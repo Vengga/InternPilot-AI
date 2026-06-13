@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme tokens ───────────────────────────────────────────────────────────
+   Dark = HUD-on-ink cockpit. Light = daylight blueprint.
+   Values are space-separated RGB channels so Tailwind's <alpha-value> works. */
+:root {
+  --ink: 247 248 251;        /* page bg (light: near-white paper) */
+  --paper: 255 255 255;      /* raised surface */
+  --panel: 248 250 253;      /* panels / cards */
+  --line: 209 217 230;       /* hairlines */
+  --muted: 92 104 128;       /* secondary text */
+  --fg: 17 26 46;            /* primary text (navy ink) */
+  --hud: 14 116 144;         /* HUD teal/cyan (darker for light bg contrast) */
+  --amber: 193 104 8;        /* instrument amber (darker for light bg) */
+  --ok: 13 124 95;
+  --warn: 176 110 8;
+  --danger: 190 41 54;
+  --grid: 16 30 60;          /* blueprint grid line color (low alpha applied) */
+  --core-a: 14 116 144;      /* 3D core color a */
+  --core-b: 193 104 8;       /* 3D core color b */
+  --core-bg: 235 240 248;    /* 3D scene clear-ish tint */
+}
+
+.dark {
+  --ink: 6 10 22;            /* deep aviation navy */
+  --paper: 12 18 34;
+  --panel: 14 21 39;
+  --line: 38 50 78;
+  --muted: 142 156 186;
+  --fg: 233 239 250;
+  --hud: 56 211 230;         /* bright HUD cyan */
+  --amber: 255 176 70;       /* instrument amber glow */
+  --ok: 52 211 153;
+  --warn: 251 191 96;
+  --danger: 248 113 113;
+  --grid: 120 160 220;
+  --core-a: 56 211 230;
+  --core-b: 255 150 60;
+  --core-bg: 6 10 22;
+}
+
+* { border-color: rgb(var(--line)); }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: rgb(var(--ink));
+  color: rgb(var(--fg));
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Faint navigation grid behind everything — the "chart" the autopilot plots on. */
+.flightgrid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(var(--grid) / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--grid) / 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at 50% 30%, black, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black, transparent 78%);
+}
+
+/* Typographic utilities */
+.eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(var(--muted));
+}
+.readout { font-family: var(--font-mono), monospace; font-variant-numeric: tabular-nums; }
+
+.panel {
+  background-color: rgb(var(--panel));
+  border: 1px solid rgb(var(--line));
+  border-radius: 14px;
+}
+.glass {
+  background: rgb(var(--panel) / 0.65);
+  border: 1px solid rgb(var(--line) / 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* HUD corner ticks for the signature framing */
+.ticks { position: relative; }
+.ticks::before, .ticks::after {
+  content: ""; position: absolute; width: 12px; height: 12px;
+  border-color: rgb(var(--hud) / 0.65); border-style: solid;
+}
+.ticks::before { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+.ticks::after { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+::selection { background: rgb(var(--hud) / 0.28); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgb(var(--line)); border-radius: 8px; }
+
+:focus-visible { outline: 2px solid rgb(var(--hud)); outline-offset: 2px; border-radius: 4px; }
+
+textarea, input { color: rgb(var(--fg)); }
+textarea::placeholder, input::placeholder { color: rgb(var(--muted) / 0.8); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

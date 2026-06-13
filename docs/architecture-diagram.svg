@@ -1,0 +1,129 @@
+<svg viewBox="0 0 980 620" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1024"/>
+      <stop offset="1" stop-color="#0d1733"/>
+    </linearGradient>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#38d3e6"/>
+    </marker>
+    <marker id="arrA" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#ff963c"/>
+    </marker>
+    <style>
+      .h{fill:#e9effa;font-weight:700}
+      .t{fill:#e9effa}
+      .m{fill:#8e9cba}
+      .lbl{fill:#8e9cba;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+      .cyan{fill:#38d3e6}.amber{fill:#ff963c}.ok{fill:#34d399}
+      .card{fill:#0e1527;stroke:#26324e}
+      .stage{fill:#101a32;stroke:#26324e}
+      .cloud{fill:#101a32;stroke:#ff963c;stroke-opacity:.5}
+    </style>
+  </defs>
+
+  <rect width="980" height="620" rx="18" fill="url(#bg)"/>
+  <text x="40" y="48" class="h" font-size="22">InternPilot AI — System Architecture</text>
+  <text x="40" y="70" class="m" font-size="13">Track 4 · Autopilot Agent · Qwen on Alibaba Cloud</text>
+
+  <!-- USER -->
+  <g>
+    <rect x="40" y="110" width="170" height="92" rx="12" class="card"/>
+    <text x="60" y="138" class="lbl">Student</text>
+    <text x="60" y="166" class="t" font-size="14">Resume + Job</text>
+    <text x="60" y="186" class="t" font-size="14">Description</text>
+  </g>
+  <line x1="210" y1="156" x2="268" y2="156" stroke="#38d3e6" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- FRONTEND -->
+  <g>
+    <rect x="270" y="96" width="220" height="240" rx="12" class="card"/>
+    <text x="290" y="124" class="lbl">Frontend · Next.js 14</text>
+    <rect x="290" y="140" width="180" height="56" rx="9" class="stage"/>
+    <text x="304" y="164" class="t" font-size="13">Studio UI (/studio)</text>
+    <text x="304" y="182" class="m" font-size="11">inputs · stage rail · gauge</text>
+    <rect x="290" y="206" width="180" height="50" rx="9" class="stage"/>
+    <text x="304" y="228" class="t" font-size="13">Human Review (06)</text>
+    <text x="304" y="245" class="m" font-size="11">edit · approve · export</text>
+    <rect x="290" y="266" width="180" height="52" rx="9" class="stage"/>
+    <text x="304" y="288" class="ok" font-size="13">Memory (07)</text>
+    <text x="304" y="305" class="m" font-size="11">history · recurring gaps</text>
+  </g>
+  <line x1="490" y1="168" x2="548" y2="168" stroke="#38d3e6" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="498" y="160" class="m" font-size="10">per-stage</text>
+  <text x="498" y="183" class="m" font-size="10">fetch()</text>
+
+  <!-- BACKEND -->
+  <g>
+    <rect x="550" y="110" width="180" height="118" rx="12" class="card"/>
+    <text x="568" y="138" class="lbl amber">Backend route</text>
+    <text x="568" y="164" class="t" font-size="13">app/api/qwen</text>
+    <text x="568" y="183" class="m" font-size="11">OpenAI-compatible</text>
+    <text x="568" y="200" class="m" font-size="11">client · JSON parse</text>
+    <text x="568" y="218" class="amber" font-size="10">★ Alibaba Cloud proof</text>
+  </g>
+  <line x1="730" y1="168" x2="788" y2="168" stroke="#ff963c" stroke-width="2" marker-end="url(#arrA)"/>
+
+  <!-- CLOUD -->
+  <g>
+    <rect x="790" y="110" width="160" height="118" rx="12" class="cloud"/>
+    <text x="808" y="138" class="lbl amber">Alibaba Cloud</text>
+    <text x="808" y="164" class="t" font-size="13">Model Studio</text>
+    <text x="808" y="182" class="m" font-size="11">(DashScope)</text>
+    <text x="808" y="208" class="cyan" font-size="14" font-weight="700">Qwen · qwen-plus</text>
+  </g>
+
+  <!-- PIPELINE -->
+  <text x="40" y="392" class="lbl">Agent pipeline — each stage = one Qwen call, structured JSON in / out</text>
+  <g>
+    <!-- stage boxes -->
+    <g>
+      <rect x="40" y="410" width="168" height="80" rx="11" class="stage"/>
+      <text x="56" y="436" class="cyan" font-size="12" font-weight="700">01 Resume Parser</text>
+      <text x="56" y="458" class="m" font-size="11">skills, projects,</text>
+      <text x="56" y="474" class="m" font-size="11">education → profile</text>
+    </g>
+    <g>
+      <rect x="228" y="410" width="168" height="80" rx="11" class="stage"/>
+      <text x="244" y="436" class="cyan" font-size="12" font-weight="700">02 JD Analyzer</text>
+      <text x="244" y="458" class="m" font-size="11">required/preferred</text>
+      <text x="244" y="474" class="m" font-size="11">skills, keywords</text>
+    </g>
+    <g>
+      <rect x="416" y="410" width="168" height="80" rx="11" class="stage"/>
+      <text x="432" y="436" class="cyan" font-size="12" font-weight="700">03 Skill Match</text>
+      <text x="432" y="458" class="m" font-size="11">fit score 0–100,</text>
+      <text x="432" y="474" class="m" font-size="11">gaps surfaced</text>
+    </g>
+    <g>
+      <rect x="604" y="410" width="168" height="80" rx="11" class="stage"/>
+      <text x="620" y="436" class="cyan" font-size="12" font-weight="700">04 Portfolio Rec.</text>
+      <text x="620" y="458" class="m" font-size="11">best projects +</text>
+      <text x="620" y="474" class="m" font-size="11">talking points</text>
+    </g>
+    <g>
+      <rect x="792" y="410" width="158" height="80" rx="11" class="stage"/>
+      <text x="808" y="436" class="cyan" font-size="12" font-weight="700">05 Pack Gen.</text>
+      <text x="808" y="458" class="m" font-size="11">letter, email,</text>
+      <text x="808" y="474" class="m" font-size="11">LinkedIn, checklist</text>
+    </g>
+    <!-- arrows between stages -->
+    <line x1="208" y1="450" x2="226" y2="450" stroke="#38d3e6" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="396" y1="450" x2="414" y2="450" stroke="#38d3e6" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="584" y1="450" x2="602" y2="450" stroke="#38d3e6" stroke-width="2" marker-end="url(#arr)"/>
+    <line x1="772" y1="450" x2="790" y2="450" stroke="#38d3e6" stroke-width="2" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- HITL + memory feedback -->
+  <g>
+    <rect x="40" y="516" width="360" height="68" rx="11" fill="#0e1527" stroke="#38d3e6" stroke-opacity=".5"/>
+    <text x="56" y="542" class="cyan" font-size="12" font-weight="700">06 Human Review Checkpoint</text>
+    <text x="56" y="564" class="m" font-size="11">User edits + approves. Nothing is sent automatically.</text>
+
+    <rect x="420" y="516" width="530" height="68" rx="11" fill="#0e1527" stroke="#34d399" stroke-opacity=".5"/>
+    <text x="436" y="542" class="ok" font-size="12" font-weight="700">07 Application Memory (persisted)</text>
+    <text x="436" y="564" class="m" font-size="11">Stores role + recurring skill gaps → feeds future runs for smarter, faster applications.</text>
+  </g>
+  <line x1="220" y1="490" x2="220" y2="514" stroke="#38d3e6" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="685" y1="490" x2="685" y2="514" stroke="#34d399" stroke-width="2" marker-end="url(#arr)"/>
+</svg>
